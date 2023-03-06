@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --primary-color: #5CDB95;
+    --primary-text: #05386B;
+    --secondary-color: #379683;
+    --tertiary-color: #8EE4AF;
+    --secondary-text: #EDF5E1;
+}
+
+body{
+    background-color: #212121;
+    font-family: 'Mukta', sans-serif;
+    /* background-image: url("images/vaishnav-munda-5lRRpJ4X0HM-unsplash\ \(1\).jpg");
+    background-size:cover;
+    background-repeat: no-repeat; */
+}
+
+.navbar{
+    width: 100%;
+    display: flex;
+    position: fixed;
+    height: 10vh;
+    top: 0;
+    background-color: #121212;
+}
+.navheading{
+    color:var(--secondary-text);
+    font-family: 'Bebas Neue', cursive;
+    font-size:5vh;
+}
+
+.maincontainer{
+    margin-top:10vh;
+    height: 250vh;
+    width: 100%;
+    display: flex;
+    color: var(--secondary-text);
+    justify-content: center;
+}
+
+.globe{
+    
+    height: 1000px;
+    width: 1000px;
+    position: absolute;
+    /* right: -50vh; */
+    top: 0;
+    z-index: -7;
+}
