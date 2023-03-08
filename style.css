@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap');
 
 *{
     margin: 0;
@@ -7,50 +8,130 @@
 }
 
 :root{
-    --primary-color: #5CDB95;
-    --primary-text: #05386B;
-    --secondary-color: #379683;
-    --tertiary-color: #8EE4AF;
-    --secondary-text: #EDF5E1;
+    --primary-theme: white;
+    --primary-text: black;
+    --secondary-theme: #212121;
+    --primary-font: 'Poppins', sans-serif;
 }
 
 body{
-    background-color: #212121;
-    font-family: 'Mukta', sans-serif;
-    /* background-image: url("images/vaishnav-munda-5lRRpJ4X0HM-unsplash\ \(1\).jpg");
-    background-size:cover;
-    background-repeat: no-repeat; */
+    background-color: var(--primary-theme);
+    font-family: var(--primary-font);
+    color: var(--primary-text);
 }
 
 .navbar{
     width: 100%;
     display: flex;
+    justify-content:space-between;
+    align-items: center;
     position: fixed;
-    height: 10vh;
+    height: 8vh;
     top: 0;
-    background-color: #121212;
-}
-.navheading{
-    color:var(--secondary-text);
-    font-family: 'Bebas Neue', cursive;
-    font-size:5vh;
+    background-color: var(--secondary-theme);
+    z-index: 5;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.dropdown-button{
+    cursor: pointer;
+    height: 3vh;
+    width: 2vw;
+    padding: 1.5vh;
+    border-radius: 10px;
+    margin: 1vh;
+}
+
+.nav-image{
+    height: 100%;
+    width: 100%;
+}
+
+#moon-image{
+    height: 30px;
+    width: 30px;
+    margin: 2vh;
+}
+
+.dropdown{
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-content{
+    font-size: medium;
+    position: absolute;
+    display: none;
+    width: 13vw;
+    height: 26vh;
+    background-color: var(--primary-theme);
+    border-bottom-right-radius: 5spx;
+    overflow: auto;
+    box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
+}
+
+.dropdown-content::-webkit-scrollbar {
+    display: none;
+  }
+
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+
+.dropdown a{
+    text-decoration: none;
+    color: var(--primary-text);
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+.main{
+    background-color:rgb(197, 197, 197);
+}
+
+.dropdown-content a:hover {
+    color: var(--primary-text);
+    background-color: rgb(244, 244, 244);
+  }
+
+.dropdown-images{
+    margin: 0vh 1vh 0vh 1vh;
+    height: 25px;
+    width: 25px;
+}
+
+.dropdown-button:hover{
+    background-color: rgb(54, 54, 54);
+    /* background-color: black; */
+}
+
+.navheading{
+    color:var(--primary-theme);
+    font-size: x-large;
+}
+
+#moon-image:hover{
+    animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(359deg);
+    }
+}
+
+
 .maincontainer{
-    margin-top:10vh;
-    height: 250vh;
+    margin-top:7vh;
+    min-height: 100vh;
     width: 100%;
     display: flex;
     color: var(--secondary-text);
     justify-content: center;
 }
 
-.globe{
-    
-    height: 1000px;
-    width: 1000px;
-    position: absolute;
-    /* right: -50vh; */
-    top: 0;
-    z-index: -7;
-}
+
