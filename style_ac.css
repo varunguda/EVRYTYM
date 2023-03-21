@@ -1,0 +1,124 @@
+
+.container2{
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    height: 150vh;
+}
+
+.alarm-sections{
+    display: flex;
+    justify-content: space-between;
+}
+
+.alarm-time{
+    width: 15vw;
+    height: 5vh;
+    outline: none;
+    border-radius: 5px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    cursor: pointer;
+}
+
+.alarm-title{
+    font-weight:600;
+}
+
+.default-times{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 2vh 8vw;
+}
+
+.default-time{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.default-time::before{
+    margin-right: 0.4vw;
+    content: "";
+    height: 15px;
+    width: 15px;
+    background-image: url(images/bell-ring-svgrepo-com.svg);
+    background-size: cover;
+    display: inline-block;
+}
+
+.default-time:hover{
+    text-decoration: underline;
+}
+
+.alarm-sounds{
+    margin-top: 2vh;
+}
+
+.alarm-sound-title{
+    font-style: italic;
+}
+
+.alarm-musics{
+    width: 100%;
+    height: 5vh;
+    outline: none;
+    border-radius: 5px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    cursor: pointer;
+}
+
+.alarm-textarea{
+    width: 100%;
+    height: 5vh;
+    border-radius: 5px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    border: 1px solid grey;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.alarm-name{
+    background-color: white;
+    height: 3vh;
+    width: 37vw;
+    outline: none;
+    font-size: small;
+}
+
+.set-alarm{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    margin-top: 3vh;
+}
+
+.alarm-table{
+    visibility: hidden;
+    margin-top: 3vh;
+    width: 100%;
+    border-collapse: collapse;
+}
+  
+tr {
+    border-bottom: 1px solid black;
+}
+  
+tr:last-child {
+    border: 0;
+}
+
+table .head{
+    font-weight: bold;
+}

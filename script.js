@@ -280,7 +280,7 @@ function formatNumber(num) {
 
 let cityClickInterval = null;
 async function cityClick(elem){
-    localStorage.setItem('default',elem.innerHTML);
+    localStorage.setItem('default',elem.innerHTML);//LocalStorage is set such that the city location sustain page/browser refresh
     containerplaceholder.style.display = "block";
     let response = await fetch(`http://worldtimeapi.org/api/timezone/${elem.innerHTML}`);
     let json = await response.json();

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nuts</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_ac.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="dropdown">
+            <div class="dropdown-button">
+                <img class="nav-image" src="images/menu-lines-svgrepo-com (1).svg">
+            </div>
+            <div class="dropdown-content">
+                <a href="index.html"><img class="dropdown-images" src="images/globe-showing-europe-africa-svgrepo-com.svg">World Clock</a>
+                <a href="alarm.html" class="main"><img class="dropdown-images" src="images/bell-ring-svgrepo-com.svg">Alarm Clock</a>
+                <a href="#"><img class="dropdown-images" src="images/stopwatch-svgrepo-com.svg">Stopwatch</a>
+                <a href="#"><img class="dropdown-images" src="images/clock-player-multimedia-svgrepo-com.svg">Clock</a>
+                <a href="#"><img class="dropdown-images" src="images/timer-svgrepo-com.svg">Timer</a>
+            </div>
+        </div>
+
+        <a class="navheading" href="#">ALARM CLOCK</a>
+        
+        <div class="theme">
+            <img src="images/moon-svgrepo-com.svg" class="nav-image" id="moon-image"/>
+        </div>
+    </div>
+
+    <div class="maincontainer">
+        <div class="container1">
+        </div>
+        <div class="navbar-secondary">
+        </div>
+        <div class="heading">Set Alarm Time</div>
+        <div class="container2">
+            <div class="alarm-sections">
+            <div class="alarm-section">
+                <div class="alarm-title">Hours</div>
+                <select class="alarm-time"  id="alarm-hour">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                </select>
+            </div>
+
+            <div class="alarm-section">
+                <div class="alarm-title">Minutes</div>
+                <select class="alarm-time" id="alarm-minute">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
+                    <option value="47">47</option>
+                    <option value="48">48</option>
+                    <option value="49">49</option>
+                    <option value="50">50</option>
+                    <option value="51">51</option>
+                    <option value="52">52</option>
+                    <option value="53">53</option>
+                    <option value="54">54</option>
+                    <option value="55">55</option>
+                    <option value="56">56</option>
+                    <option value="57">57</option>
+                    <option value="58">58</option>
+                    <option value="59">59</option>
+                </select>
+            </div>
+            </div>
+
+            <div class="default-times">
+                <div class="default-time">5:00</div>
+                <div class="default-time">6:00</div>
+                <div class="default-time">7:00</div>
+                <div class="default-time">8:00</div>
+                <div class="default-time">5:30</div>
+                <div class="default-time">6:30</div>
+                <div class="default-time">7:30</div>
+                <div class="default-time">8:30</div>
+            </div>
+
+            <div class="alarm-sounds">
+                <div class="alarm-sound-title">Alarm Sound</div>
+                <select class="alarm-musics">
+                    <option value="clock">Clock</option>
+                    <option value="beeps">Beeps</option>
+                    <option value="spaceship">Space Ship</option>
+                    <option value="emergency">Emergency</option>
+                    <option value="outdoor">Outdoor</option>
+                    <option value="schoolbell">Electric School Bell</option>
+                    <option value="siren">Siren</option>
+                </select>
+            </div>
+
+            <div class="alarm-sounds">
+                <div class="alarm-sound-title">Alarm Name</div>
+                <div class="alarm-textarea">
+                    <div class="alarm-name" contenteditable>Alarm</div>
+                </div>
+            </div>
+
+            <div class="set-alarm">SET ALARM</div>
+
+            <hr>
+
+            <table class="alarm-table">
+                <tr class="head">
+                    <td>#</td>
+                    <td>NAME</td>
+                    <td>ALARM</td>
+                    <td>ALARM SOUND</td>
+                    <td>STARTED</td>
+                    <td>STOPPED</td>
+                </tr>
+            </table>
+        </div> 
+    </div>
+
+
+
+    <script src="script_ac.js"></script>
+</body>
+</html>
