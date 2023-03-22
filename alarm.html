@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="style_ac.css">
 </head>
 <body>
+
+    <img src="images/alarm-clock-svgrepo-com.svg" id="alarm-image">
+
     <div class="navbar">
         <div class="dropdown">
             <div class="dropdown-button">
@@ -136,14 +139,14 @@
             </div>
 
             <div class="default-times">
-                <div class="default-time">5:00</div>
-                <div class="default-time">6:00</div>
-                <div class="default-time">7:00</div>
-                <div class="default-time">8:00</div>
-                <div class="default-time">5:30</div>
-                <div class="default-time">6:30</div>
-                <div class="default-time">7:30</div>
-                <div class="default-time">8:30</div>
+                <div class="default-time" onclick="defaultTimeClick(this)">5:00</div>
+                <div class="default-time" onclick="defaultTimeClick(this)">6:00</div>
+                <div class="default-time" onclick="defaultTimeClick(this)">7:00</div>
+                <div class="default-time" onclick="defaultTimeClick(this)">8:00</div>
+                <div class="default-time" onclick="defaultTimeClick(this)">5:30</div>
+                <div class="default-time" onclick="defaultTimeClick(this)">6:30</div>
+                <div class="default-time" onclick="defaultTimeClick(this)">7:30</div>
+                <div class="default-time" onclick="defaultTimeClick(this)">8:30</div>
             </div>
 
             <div class="alarm-sounds">
@@ -153,9 +156,9 @@
                     <option value="beeps">Beeps</option>
                     <option value="spaceship">Space Ship</option>
                     <option value="emergency">Emergency</option>
-                    <option value="outdoor">Outdoor</option>
+                    <option value="risendshine">Rise and Shine</option>
                     <option value="schoolbell">Electric School Bell</option>
-                    <option value="siren">Siren</option>
+                    <option value="siren">Car Siren</option>
                 </select>
             </div>
 
@@ -171,15 +174,22 @@
             <hr>
 
             <table class="alarm-table">
+                <tbody class="alarm-table-body">
                 <tr class="head">
                     <td>#</td>
                     <td>NAME</td>
                     <td>ALARM</td>
-                    <td>ALARM SOUND</td>
+                    <td>SOUND</td>
                     <td>STARTED</td>
                     <td>STOPPED</td>
                 </tr>
+                </tbody>
             </table>
+
+            <div class="table-buttons">
+                <div class="button-secondary button">Edit Data</div>
+                <div class="button-primary button">Clear Data</div>
+            </div>
         </div> 
     </div>
 

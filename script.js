@@ -218,6 +218,7 @@ async function addTimeSecond(arr){
         cityTime[99+arr.indexOf(val)].innerHTML = ihtml;
     }
 }
+
 async function addTimeThird(arr){
     for(let val of arr){
         let response = await fetch(`http://worldtimeapi.org/api/timezone/${val}`);
@@ -230,6 +231,7 @@ async function addTimeThird(arr){
         cityTime[198+arr.indexOf(val)].innerHTML = ihtml;
     }
 }
+
 async function addTimeFourth(arr){
     for(let val of arr){
         let response = await fetch(`http://worldtimeapi.org/api/timezone/${val}`);
@@ -280,6 +282,7 @@ function formatNumber(num) {
 
 let cityClickInterval = null;
 async function cityClick(elem){
+    window.scrollTo(0,0);
     localStorage.setItem('default',elem.innerHTML);//LocalStorage is set such that the city location sustain page/browser refresh
     containerplaceholder.style.display = "block";
     let response = await fetch(`http://worldtimeapi.org/api/timezone/${elem.innerHTML}`);
