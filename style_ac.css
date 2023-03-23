@@ -6,6 +6,14 @@
     height: 150vh;
 }
 
+.bgc{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top:0;
+    transition: 0.2s;
+}
+
 #alarm-image{
     visibility: hidden;
     height: 30vh;
@@ -207,7 +215,7 @@ table .head{
     border: 1px solid black;
     cursor: pointer;
     border-radius: 5px;
-    transition: 0.2s;
+    /* transition: 0.2s; */
 }
 
 .button-primary{
@@ -225,4 +233,24 @@ table .head{
     background-color: black;
     color: white;
     transform: scale(1.04);
+}
+
+.delete-button{
+    position: absolute;
+    visibility: hidden;
+}
+
+.save-button{
+    position: absolute;
+    visibility: hidden;
+}
+
+.alarm-cell-time{
+    font-style: italic;
+    font-weight: bold;
+}
+
+.alarm-input-checkbox{
+    display: none;
+    cursor: pointer;
 }
