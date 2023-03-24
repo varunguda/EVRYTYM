@@ -19,6 +19,7 @@ let alarmMusic = document.querySelector('.alarm-musics');
 let alarmTone = document.getElementsByClassName('alarm-tone');
 let alarmCellRow = document.getElementsByClassName(`alarm-cell-row`);
 let alarmCellTime = document.getElementsByClassName(`alarm-cell-time`);
+let alarmStart = document.getElementsByClassName('alarm-started');
 let isStopped = document.getElementsByClassName(`isStopped`);
 let tableButtons = document.querySelector('.table-buttons');
 let clearTableData = document.querySelector('.button-primary');
@@ -30,6 +31,9 @@ let alarmId =1;
 let alarmImage = document.getElementById('alarm-image');
 let alarmInputCheckbox = document.getElementsByClassName('alarm-input-checkbox');
 let alarmInputLabel = document.getElementsByClassName('alarm-input-label');
+let defaultTime = document.getElementsByClassName('default-time');
+let customAlert = document.getElementById('custom-alert');
+let alertMessage = document.getElementsByClassName('alert-message')[0];
 
 
 let months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
@@ -342,32 +346,41 @@ alarmName.addEventListener('keydown',(event)=>{
     }
 })
 
+
 const addAlarm = async() =>{
     let response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Kolkata')
     let json = await response.json();
     alarmTableBody.innerHTML += `<tr class='alarm-cell-row'>
-    <td class='alarm-id'>${alarmId}</td>
+    <td class='alarm-id'>
+    <input type='checkbox' class='alarm-input-checkbox'/>
+    <label for='alarm-input-checkbox' class='alarm-input-label'>${alarmId}</label>
+    </td>
     <td>${alarmName.innerHTML}</td>
     <td class='alarm-cell-time'>${alarmHour.value}:${alarmMinute.value}</td>
     <td class='alarm-tone'>${alarmMusic.value}</td>
-    <td>${json.datetime.slice(11,13)}:${json.datetime.slice(14,16)}</td>
+    <td class='alarm-started'>${json.datetime.slice(11,13)}:${json.datetime.slice(14,16)}</td>
     <td class='isStopped'>-</td>
-</tr>`;
+    </tr>`;
     alarmId += 1;
     alarmHour.value= '00';
     alarmMinute.value='00';
     alarmName.innerHTML = 'Alarm';
+    let str = `kolkata~${alarmId}~${alarmName.innerHTML}~${alarmCellTime[alarmId-1].innerHTML}~${alarmTone[alarmId-1].innerHTML}~${alarmStart[alarmId-1].innerHTML}~${isStopped[alarmId-1].innerHTML}`;
+    localStorage.setItem(alarmId,str);
 }
 
 const addAlarmLocal = async() =>{
-    let response = await fetch(`http://worldtimeapi.org/api/timezone/${localStorage.getItem('default')}`)
+    let response = await fetch(`http://worldtimeapi.org/api/timezone/${localStorage.getItem('default')}`);
     let json = await response.json();
     alarmTableBody.innerHTML += `<tr class='alarm-cell-row'>
-    <td class='alarm-id'>${alarmId}</td>
+    <td class='alarm-id'>
+    <input type='checkbox' class='alarm-input-checkbox'/>
+    <label for='alarm-input-checkbox' class='alarm-input-label'>${alarmId}</label>
+    </td>
     <td>${alarmName.innerHTML}</td>
     <td class='alarm-cell-time'>${alarmHour.value}:${alarmMinute.value}</td>
     <td class='alarm-tone'>${alarmMusic.value}</td>
-    <td>${json.datetime.slice(11,13)}:${json.datetime.slice(14,16)}</td>
+    <td class='alarm-started'>${json.datetime.slice(11,13)}:${json.datetime.slice(14,16)}</td>
     <td class='isStopped'>-</td>
 </tr>`;
     alarmId += 1;
@@ -378,7 +391,9 @@ const addAlarmLocal = async() =>{
 
 
 setAlarm.addEventListener("click", ()=>{
-    alarmTable.style.visibility='visible';//makes the alarm table visible.
+
+    if(saveButton.style.visibility != 'visible' && deleteButton.style.visibility != 'visible'){
+        alarmTable.style.visibility='visible';//makes the alarm table visible.
     tableButtons.style.visibility = 'visible';
 
     if(alarmId>1){
@@ -400,7 +415,7 @@ setAlarm.addEventListener("click", ()=>{
         }
 
         if(isSame){
-            alert(`You already have an Alarm set to ${alarmHour.value}:${alarmMinute.value}`);
+            showAlert(`You already have an Alarm set to ${alarmHour.value}:${alarmMinute.value}`);
         }
         else{
             if(localStorage.getItem('default')){
@@ -423,15 +438,32 @@ setAlarm.addEventListener("click", ()=>{
             addAlarm();
         }
     }
+    
+    }
+    else{
+        showAlert('Save the Alarm Changes');
+    }
 })
 
 
 clearTableData.addEventListener('click',()=>{
-    for(let i=1; i<alarmId; i++){
-        alarmCellRow[0].remove();
+
+    if(alarmId == 1){
+        showAlert('There are no Alarms set');
     }
-    alarmId = 1;
-    alarmNum = 1;
+    else{
+        if(saveButton.style.visibility != 'visible' && deleteButton.style.visibility != 'visible'){
+            for(let i=1; i<alarmId; i++){
+                alarmCellRow[0].remove();
+            }
+            alarmId = 1;
+            alarmNum = 1;
+        }
+        else{
+            showAlert('Save the Alarm Changes');
+        }
+    }
+
 })
 
 
@@ -439,11 +471,14 @@ const addDefaultAlarmLocal = async(elem) =>{
     let response = await fetch(`http://worldtimeapi.org/api/timezone/${localStorage.getItem('default')}`);
     let json = await response.json();
     alarmTableBody.innerHTML += `<tr class='alarm-cell-row'>
-    <td class='alarm-id'>${alarmId}</td>
+    <td class='alarm-id'>
+    <input type='checkbox' class='alarm-input-checkbox'/>
+    <label for='alarm-input-checkbox' class='alarm-input-label'>${alarmId}</label>
+    </td>
     <td>${alarmName.innerHTML}</td>
     <td class='alarm-cell-time'>0${elem.innerHTML}</td>
     <td class='alarm-tone'>${alarmMusic.value}</td>
-    <td>${json.datetime.slice(11,13)}:${json.datetime.slice(14,16)}</td>
+    <td class='alarm-started'>${json.datetime.slice(11,13)}:${json.datetime.slice(14,16)}</td>
     <td class='isStopped'>-</td>
 </tr>`;
     alarmId += 1;
@@ -454,19 +489,22 @@ const addDefaultAlarm = async(elem) =>{
     let json = await response.json();
     alarmTableBody.innerHTML += `<tr class='alarm-cell-row'>
     <td class='alarm-id'>
-    <input type='checkbox' id='alarm-input-checkbox${alarmId}' class='alarm-input-checkbox'/>
-    <label for='alarm-input-checkbox' id='alarm-input-label${alarmId}' class='alarm-input-label'>${alarmId}</label>
+    <input type='checkbox' class='alarm-input-checkbox'/>
+    <label for='alarm-input-checkbox' class='alarm-input-label'>${alarmId}</label>
     </td>
     <td>${alarmName.innerHTML}</td>
     <td class='alarm-cell-time'>0${elem.innerHTML}</td>
     <td class='alarm-tone'>${alarmMusic.value}</td>
-    <td>${json.datetime.slice(11,13)}:${json.datetime.slice(14,16)}</td>
+    <td class='alarm-started'>${json.datetime.slice(11,13)}:${json.datetime.slice(14,16)}</td>
     <td class='isStopped'>-</td>
 </tr>`;
     alarmId += 1;
 }
 
 const defaultTimeClick = (elem) =>{
+
+    if(saveButton.style.visibility != 'visible' && deleteButton.style.visibility != 'visible'){
+        
     alarmTable.style.visibility='visible';
     tableButtons.style.visibility = 'visible';
 
@@ -489,7 +527,7 @@ const defaultTimeClick = (elem) =>{
         }
 
         if(isSame){
-            alert(`You already have an Alarm set to ${elem.innerHTML}`);
+            showAlert(`You already have an Alarm set to ${elem.innerHTML}`);
         }
         else{
             if(localStorage.getItem('default')){
@@ -512,39 +550,72 @@ const defaultTimeClick = (elem) =>{
             addDefaultAlarm(elem);
         }
     }
+    }
+    else{
+        showAlert('Save the Alarm Changes');
+    }
 }
 
-editTableData.addEventListener('click',()=>{
 
-    editTableData.style.visibility = 'hidden';
-    saveButton.style.visibility='visible';
-    saveButton.style.position='static';
-
-    let isChecked = 0;
-    for(let i=1; i<alarmId; i++){
-        alarmInputCheckbox[i-1].style.display='inline-block';
-        alarmInputLabel[i-1].style.display='none';
-        alarmInputCheckbox[i-1].addEventListener('change',(event)=>{
-            if(event.target.checked){
-                isChecked += 1;
-                saveButton.style.visibility = 'hidden';
-                deleteButton.style.visibility='visible';
-                deleteButton.style.position='static';
-            }
-            else{
-                isChecked -= 1;
-                if(isChecked == 0){
-                    saveButton.style.visibility = 'visible';
-                    deleteButton.style.visibility='hidden';
-                    deleteButton.style.position='absolute';
-                }
-            }
-        })
+const disableButtons = () =>{
+    for(let i=0; i<defaultTime.length; i++){
+        defaultTime[i].style.cursor = 'not-allowed';
     }
+    clearTableData.style.cursor = 'not-allowed';
+    setAlarm.style.cursor = 'not-allowed';
+}
+
+const enableButtons = () =>{
+    for(let i=0; i<defaultTime.length; i++){
+        defaultTime[i].style.cursor = 'pointer';
+    }
+    clearTableData.style.cursor = 'pointer';
+    setAlarm.style.cursor = 'pointer';
+}
+
+editTableData.addEventListener('click',(event)=>{
+
+    if(alarmId == 1){
+        showAlert('There are no Alarms set');
+    }
+    else{
+        disableButtons();
+    
+        event.preventDefault();
+        editTableData.style.visibility = 'hidden';
+        saveButton.style.visibility='visible';
+        saveButton.style.position='static';
+    
+        let isChecked = 0;
+        for(let i=1; i<alarmId; i++){
+            alarmInputCheckbox[i-1].style.display='inline-block';
+            alarmInputLabel[i-1].style.display='none';
+            alarmInputCheckbox[i-1].addEventListener('change',(event)=>{
+                if(event.target.checked){
+                    isChecked += 1;
+                    saveButton.style.visibility = 'hidden';
+                    deleteButton.style.visibility='visible';
+                    deleteButton.style.position='static';
+                }
+                else{
+                    isChecked -= 1;
+                    if(isChecked == 0){
+                        saveButton.style.visibility = 'visible';
+                        deleteButton.style.visibility='hidden';
+                        deleteButton.style.position='absolute';
+                    }
+                }
+            })
+        }
+    }
+
 });
 
 
 saveButton.addEventListener('click',()=>{
+
+    enableButtons();
+
     saveButton.style.visibility = 'hidden';
     saveButton.style.position='absolute';
     editTableData.style.visibility = 'visible';
@@ -552,10 +623,98 @@ saveButton.addEventListener('click',()=>{
         alarmInputCheckbox[i-1].checked = false;
         alarmInputCheckbox[i-1].style.display='none';
         alarmInputLabel[i-1].style.display='block';
+        alarmInputLabel[i-1].innerHTML = i;
     }
 })
 
 deleteButton.addEventListener('click',()=>{
+    isDeleted = 0;
+    for(let i=1; i<alarmId; i++){
+        if(alarmInputCheckbox[i-1].checked == true){
+            alarmCellRow[i-1].remove();
+            isDeleted += 1;
+            alarmId -= 1;
+            i-=1;
+        }
+    }
+    if(isDeleted){
+        if(isDeleted>1){
+            showAlert(`Successfully deleted ${isDeleted} Alarms`);
+        }
+        else{
+            showAlert(`Successfully deleted an Alarm`);
+        }
+    }
 
+    if(alarmId==1){
+        enableButtons();
+        deleteButton.style.visibility = 'hidden';
+        deleteButton.style.position='absolute';
+        saveButton.style.position='absolute';
+        editTableData.style.visibility = 'visible';
+    }
+    else{
+        deleteButton.style.visibility = 'hidden';
+        deleteButton.style.position='absolute';
+        saveButton.style.visibility = 'visible';
+    }
 })
 
+
+const showAlert = (msg) =>{
+    customAlert.classList.remove('active');
+    alertMessage.innerHTML = msg;
+    customAlert.style.display = 'block';
+    setTimeout(()=>{
+        customAlert.classList.add('active');
+    },2500);
+    setTimeout(()=>{
+        customAlert.style.display = 'none';
+    },3000);
+}
+
+const toArray = (str) =>{
+    let arr = [];
+    let val = null;
+    for(let i=0; i<str.length; i++){
+        if(str[i]!='~'){
+            if(str[i]=='-'){
+                arr.push('-');
+            }
+            else if(val == null){
+                val = str[i];
+            }
+            else{
+                val+=str[i];
+            }
+        }
+        else{
+            arr.push(val);
+            val = null;
+        }
+    }
+    return arr
+}
+
+
+const addLocalStorageAlarm = () =>{
+    for(let i=1; i<2; i++){
+        let b = localStorage.getItem(i);
+        let a = toArray(b);
+        console.log(a);
+        alarmTableBody.innerHTML += `<tr class='alarm-cell-row'>
+    <td class='alarm-id'>
+    <input type='checkbox' class='alarm-input-checkbox'/>
+    <label for='alarm-input-checkbox' class='alarm-input-label'>${a[1]}</label>
+    </td>
+    <td>${a[2]}</td>
+    <td class='alarm-cell-time'>${a[3]}</td>
+    <td class='alarm-tone'>${a[4]}</td>
+    <td>${a[5]}</td>
+    <td class='isStopped'>${a[6]}</td>
+    </tr>`;
+    alarmId+=1;
+    }
+}
+
+// addLocalStorageAlarm();
