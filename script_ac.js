@@ -53,7 +53,6 @@ function formatNumber(num) {
     return formattedNum;
 }
 
-
 let mainCityInterval = null;
 let days = ["Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 async function mainAreaDetails(){
@@ -215,110 +214,46 @@ const alarmMusicFn = (v) =>{
     let spaceMusic = new Audio('audios/mixkit-spaceship-alarm-998.wav');
     let risenshineMusic = new Audio('audios/Vivo Y91 Alarm - Morning Alarm.mp3');
 
-    if(alarmTone[v-1].innerHTML == 'beeps'){
-        beepMusic.play();
-        alarmImage.style.visibility='visible';
+    const musicPlay = (music) =>{
+        music.play();
         bgColor(1);
-        let beepInterval = setTimeout(()=>{
-            alarmImage.style.visibility='hidden';
-            bgColor(0);
-        },60000);
+        alarmImage.style.visibility = 'visible';
+        let tuneInterval = setInterval(()=>{
+            if(second[0].innerHTML == 59){
+                clearInterval(tuneInterval);
+                bgColor(0);
+                alarmImage.style.visibility = 'hidden';
+                music.pause();
+            }
+        },1000);
         alarmImage.addEventListener('click', ()=>{
-            clearInterval(beepInterval);
+            clearInterval(tuneInterval);
             bgColor(0);
             alarmImage.style.visibility = 'hidden';
-            beepMusic.pause();
-        })
+            music.pause();
+        });
+    }
+
+    if(alarmTone[v-1].innerHTML == 'beeps'){
+        musicPlay(beepMusic);
     }
     else if(alarmTone[v-1].innerHTML == 'emergency'){
-        emergencyMusic.play();
-        alarmImage.style.visibility='visible';
-        bgColor(1);
-        let emergencyInterval =  setTimeout(()=>{
-            alarmImage.style.visibility='hidden';
-            bgColor(0);
-        },60000);
-        alarmImage.addEventListener('click', ()=>{
-            clearInterval(emergencyInterval);
-            bgColor(0);
-            alarmImage.style.visibility = 'hidden';
-            emergencyMusic.pause();
-        })
+        musicPlay(emergencyMusic);
     }
     else if(alarmTone[v-1].innerHTML == 'siren'){
-        carSirenMusic.play();
-        alarmImage.style.visibility='visible';
-        bgColor(1);
-        let sirenInterval = setTimeout(()=>{
-            bgColor(0);
-            alarmImage.style.visibility='hidden';
-        },60000);
-        alarmImage.addEventListener('click', ()=>{
-            clearInterval(sirenInterval);
-            bgColor(0);
-            alarmImage.style.visibility = 'hidden';
-            carSirenMusic.pause();
-        })
+        musicPlay(carSirenMusic);
     }
     else if(alarmTone[v-1].innerHTML == 'clock'){
-        clockMusic.play();
-        alarmImage.style.visibility='visible';
-        bgColor(1);
-        let clockInterval = setTimeout(()=>{
-            bgColor(0);
-            alarmImage.style.visibility='hidden';
-        },60000);
-        alarmImage.addEventListener('click', ()=>{
-            clearInterval(clockInterval);
-            bgColor(0);
-            alarmImage.style.visibility = 'hidden';
-            clockMusic.pause();
-        })
+        musicPlay(clockMusic);
     }
     else if(alarmTone[v-1].innerHTML == 'spaceship'){
-        spaceMusic.play();
-        alarmImage.style.visibility='visible';
-        bgColor(1);
-        let spaceInterval = setTimeout(()=>{
-            bgColor(0);
-            alarmImage.style.visibility='hidden';
-        },60000);
-        alarmImage.addEventListener('click', ()=>{
-            clearInterval(spaceInterval);
-            bgColor(0);
-            alarmImage.style.visibility = 'hidden';
-            spaceMusic.pause();
-        })
+        musicPlay(spaceMusic);
     }
     else if(alarmTone[v-1].innerHTML == 'schoolbell'){
-        schoolMusic.play();
-        alarmImage.style.visibility='visible';
-        bgColor(1);
-        let schoolInterval = setTimeout(()=>{
-            bgColor(0);
-            alarmImage.style.visibility='hidden';
-        },60000);
-        alarmImage.addEventListener('click', ()=>{
-            clearInterval(schoolInterval);
-            bgColor(0);
-            alarmImage.style.visibility = 'hidden';
-            schoolMusic.pause();
-        })
+        musicPlay(schoolMusic);
     }
     else if(alarmTone[v-1].innerHTML == 'risendshine'){
-        alarmImage.style.visibility='visible';
-        risenshineMusic.play();
-        bgColor(1);
-        let risenshineInterval = setTimeout(()=>{
-            bgColor(0);
-            alarmImage.style.visibility='hidden';
-        },60000);
-        alarmImage.addEventListener('click', ()=>{
-            clearInterval(risenshineInterval);
-            alarmImage.style.visibility = 'hidden';
-            bgColor(0);
-            risenshineMusic.pause();
-        })
+        musicPlay(risenshineMusic);
     }
 }
 
@@ -338,7 +273,7 @@ window.addEventListener("scroll",()=>{
     prevScrollPositon = currentScrollPosition;
 });
 
-//prevents the div from moving into newline upon pressing 'enter'
+//prevents the div from moving into newline upon pressing 'enter', the content in the div gets saved.
 alarmName.addEventListener('keydown',(event)=>{
     if(event.keyCode==13){//13 is the keycode for 'enter' key
         event.preventDefault();
@@ -348,7 +283,7 @@ alarmName.addEventListener('keydown',(event)=>{
 
 
 const addAlarm = async() =>{
-    let response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Kolkata')
+    let response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Kolkata');
     let json = await response.json();
     alarmTableBody.innerHTML += `<tr class='alarm-cell-row'>
     <td class='alarm-id'>
@@ -361,12 +296,10 @@ const addAlarm = async() =>{
     <td class='alarm-started'>${json.datetime.slice(11,13)}:${json.datetime.slice(14,16)}</td>
     <td class='isStopped'>-</td>
     </tr>`;
-    alarmId += 1;
     alarmHour.value= '00';
     alarmMinute.value='00';
     alarmName.innerHTML = 'Alarm';
-    let str = `kolkata~${alarmId}~${alarmName.innerHTML}~${alarmCellTime[alarmId-1].innerHTML}~${alarmTone[alarmId-1].innerHTML}~${alarmStart[alarmId-1].innerHTML}~${isStopped[alarmId-1].innerHTML}`;
-    localStorage.setItem(alarmId,str);
+    alarmId += 1;
 }
 
 const addAlarmLocal = async() =>{
@@ -388,7 +321,6 @@ const addAlarmLocal = async() =>{
     alarmMinute.value='00';
     alarmName.innerHTML = 'Alarm';
 }
-
 
 setAlarm.addEventListener("click", ()=>{
 
@@ -672,49 +604,3 @@ const showAlert = (msg) =>{
         customAlert.style.display = 'none';
     },3000);
 }
-
-const toArray = (str) =>{
-    let arr = [];
-    let val = null;
-    for(let i=0; i<str.length; i++){
-        if(str[i]!='~'){
-            if(str[i]=='-'){
-                arr.push('-');
-            }
-            else if(val == null){
-                val = str[i];
-            }
-            else{
-                val+=str[i];
-            }
-        }
-        else{
-            arr.push(val);
-            val = null;
-        }
-    }
-    return arr
-}
-
-
-const addLocalStorageAlarm = () =>{
-    for(let i=1; i<2; i++){
-        let b = localStorage.getItem(i);
-        let a = toArray(b);
-        console.log(a);
-        alarmTableBody.innerHTML += `<tr class='alarm-cell-row'>
-    <td class='alarm-id'>
-    <input type='checkbox' class='alarm-input-checkbox'/>
-    <label for='alarm-input-checkbox' class='alarm-input-label'>${a[1]}</label>
-    </td>
-    <td>${a[2]}</td>
-    <td class='alarm-cell-time'>${a[3]}</td>
-    <td class='alarm-tone'>${a[4]}</td>
-    <td>${a[5]}</td>
-    <td class='isStopped'>${a[6]}</td>
-    </tr>`;
-    alarmId+=1;
-    }
-}
-
-// addLocalStorageAlarm();

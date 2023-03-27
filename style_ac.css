@@ -173,7 +173,7 @@
 }
 
 .alarm-table{
-    /* visibility: hidden; */
+    visibility: hidden;
     margin-top: 3vh;
     width: 100%;
     border-collapse: collapse;

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvryTym-StopWatch</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_ac.css">
+    <link rel="stylesheet" href="style_sw.css">
+</head>
+<body>
+    <div id="custom-alert" class="alert">
+        <div class="alert-message"></div>
+    </div>
+
+    <div class="navbar">
+        <div class="dropdown">
+            <div class="dropdown-button">
+                <img class="nav-image" src="images/menu-lines-svgrepo-com (1).svg">
+            </div>
+            <div class="dropdown-content">
+                <a href="index.html"><img class="dropdown-images" src="images/globe-showing-europe-africa-svgrepo-com.svg">World Clock</a>
+                <a href="alarm.html"><img class="dropdown-images" src="images/bell-ring-svgrepo-com.svg">Alarm Clock</a>
+                <a href="stop-watch.html" class="main"><img class="dropdown-images" src="images/stopwatch-svgrepo-com.svg">Stopwatch</a>
+                <a href="#"><img class="dropdown-images" src="images/clock-player-multimedia-svgrepo-com.svg">Clock</a>
+                <a href="#"><img class="dropdown-images" src="images/timer-svgrepo-com.svg">Timer</a>
+            </div>
+        </div>
+
+        <a class="navheading" href="#">STOPWATCH</a>
+        
+        <div class="theme">
+            <img src="images/moon-svgrepo-com.svg" class="nav-image" id="moon-image"/>
+        </div>
+    </div>
+
+    <div class="maincontainer">
+        <div class="container">
+            <div class="elapsed-time-pair">
+                <div class='elapsed-time-container stop-watch'>00:00:00</div>
+                <span class="stop-milli-second">0</span>
+            </div>
+            <div class="lap-time-pair">
+                <div class="lap-time-container">00:00:00</div>
+                <span class="lap-milli-second">0</span>
+            </div>
+        </div>
+
+        <div class="main-button">
+            <div class="start-button primary-button primary-color">
+                START
+            </div>
+            <div class="pause-button secondary-button primary-color set1">
+                PAUSE
+            </div>
+            <div class="lap-button secondary-button secondary-color set1">
+                LAP
+            </div>
+            <div class="continue-button secondary-button primary-color set2">
+                CONTINUE
+            </div>
+            <div class="reset-button secondary-button secondary-color set2">
+                RESET
+            </div>
+        </div>
+
+        <div class="container2">
+            <table class="stopwatch-table alarm-table">
+                <tbody class="stopwatch-table-body alarm-table-body">
+                <tr class="head">
+                    <td>#</td>
+                    <td>LAP TIME</td>
+                    <td>ELAPSED TIME</td>
+                </tr>
+                </tbody>
+            </table>
+    
+            <div class="stopwatch-table-buttons">
+                <div class="stopwatch-secondary-buttons">
+                    <div class="stopwatch-delete-button stopwatch-button stopwatch-button-secondary">Delete</div>
+                    <div class="stopwatch-save-button stopwatch-button stopwatch-button-secondary">Save</div>
+                    <div class="stopwatch-edit-button stopwatch-button stopwatch-button-secondary">Edit Data</div>
+                </div>
+                <div class="stopwatch-button-primary stopwatch-button">Clear Data</div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="script_sw.js"></script>
+</body>
+</html>

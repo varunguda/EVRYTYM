@@ -1,0 +1,165 @@
+
+.container{
+    height: 31vh;
+    width: 36vw;
+    margin: auto;
+    overflow: auto;
+}
+
+.elapsed-time-container{
+    font-size: 8vw;
+    display: inline-block;
+}
+
+.stop-milli-second{
+    font-size: 2vw;
+}
+
+.lap-time-pair{
+    width: 100%;
+    font-size: 1vw;
+    color: rgb(94, 94, 94);
+    text-align: center;
+    margin: auto;
+}
+
+.lap-time-container{
+    font-size: 1.5vw;
+    display: inline-block;
+}
+
+
+.main-button{
+    display: flex;
+    gap: 1vw;
+    height: 5vh;
+    width: 30vw;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vh;
+}
+
+.secondary-button{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border-radius: 5px;
+    height: 5vh;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.primary-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    border-radius: 5px;
+    border: 1px solid black;
+    height: 5vh;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.set1{
+    flex: 0.5;
+    display: none;
+    position: absolute;
+}
+
+.set2{
+    flex: 0.5;
+    display: none;
+    position: absolute;
+}
+
+
+.primary-color{
+    background-color: black;
+    color: white;
+}
+
+.secondary-color{
+    background-color: white;
+    color: black;
+}
+
+.primary-color:hover{
+    background-color: white;
+    color: black;
+}
+
+.secondary-color:hover{
+    background-color: black;
+    color: white;
+}
+
+.stopwatch-table-buttons{
+    height: 5vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+}
+
+.stopwatch-button{
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color:black;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+    flex: 1;
+}
+
+.stopwatch-button:hover{
+    transform: scale(1.02);
+}
+
+.stopwatch-secondary-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex:0.5;
+}
+
+.stopwatch-button-secondary:hover{
+    background-color:black;
+    color: white;
+}
+
+.stopwatch-delete-button{
+    display: none;
+    position: absolute;
+}
+
+.stopwatch-save-button{
+    display: none;
+    position: absolute;
+}
+
+/* .stopwatch-edit-button{
+} */
+
+.stopwatch-button-primary{
+    background-color: black;
+    color: white;
+    flex: 0.5;
+}
+
+.stopwatch-button-primary:hover{
+    background-color: white;
+    color: black;
+}
+
+.stopwatch-input-checkbox{
+    display: none;
+    cursor: pointer;
+}
