@@ -57,6 +57,7 @@ body{
     height: 30px;
     width: 30px;
     margin: 2vh;
+    cursor: pointer;
 }
 
 .dropdown{

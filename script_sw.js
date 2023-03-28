@@ -280,12 +280,12 @@ editTableData.addEventListener('click',(event)=>{
                 }
                 else{
                     isChecked -= 1;
-                    if(isChecked == 0){
-                        saveButton.style.display = 'flex';
-                        saveButton.style.position = 'static';
-                        deleteButton.style.display='none';
-                        deleteButton.style.position='absolute';
-                    }
+                }
+                if(isChecked == 0){
+                    saveButton.style.display = 'flex';
+                    saveButton.style.position = 'static';
+                    deleteButton.style.display='none';
+                    deleteButton.style.position='absolute';
                 }
             })
         }
