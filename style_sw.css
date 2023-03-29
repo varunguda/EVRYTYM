@@ -107,6 +107,7 @@
 
 .stopwatch-button{
     height: 5vh;
+    width: 99%;
     display: flex;
     justify-content: center;
     align-items: center;

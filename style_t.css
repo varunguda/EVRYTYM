@@ -1,7 +1,83 @@
 
+.container1{
+    height: 40vh;
+    margin-top:20vh;
+    width: 40vw;
+    flex-direction: row;
+}
+
 .timer-container{
+    /* display: none; */
     position: relative;
-    top: 10vh;
-    width: 35vw;
+    /* overflow: hidden; */
+    width: 40vw;
+}
+
+.default-times{
+    width: 100%;
+    font-size: 90%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: center;
+    grid-gap: 2vh 4vw;
+}
+
+.alarm-time{
+    width: 10vw;
+}
+
+.container-head{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.timer-table{
+    visibility: hidden;
+}
+
+.timer-table-buttons{
+    display: none;
+    width: 99%;
+}
+
+
+.timer-show{
+    height: 400px;
+    width: 400px;
+    border-radius: 300px;
+    background-color:black;
+}
+
+.timer-progress-container{
+    position: relative;
+    width: 50%;
+    height: 3vh;
+    border: 1px solid black;
+    left: 25%;
     overflow: hidden;
+}
+
+.timer-progress{
+    position: relative;
+    background-color: white;
+    height: 100%;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.timer-progress::before{
+    content: '';
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--progress);
+}
+
+.progress-number{
+    position: absolute;
+    z-index: 3;
+    color: black;
+    left: 50%;
+    transform: translate(-50%);
 }

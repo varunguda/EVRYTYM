@@ -7,9 +7,17 @@
     <title>EVRYTYM-Timer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style_ac.css">
+    <link rel="stylesheet" href="style_sw.css">
     <link rel="stylesheet" href="style_t.css">
 </head>
 <body>
+
+    <img src="images/alarm-clock-svgrepo-com.svg" id="alarm-image">
+
+    <div id="custom-alert" class="alert">
+        <div class="alert-message"></div>
+    </div>
+
     <div class="navbar">
         <div class="dropdown">
             <div class="dropdown-button">
@@ -32,17 +40,26 @@
         </div>
     </div>
 
+    
     <div class="maincontainer">
-
+        
+        <div class="container1">
+            <div class="timer-progress-container">
+                <div class="progress-number">0%</div>
+                <div class="timer-progress" style="--progress:0%;"></div>
+            </div>
+        </div>
+        
     <div class="container2 timer-container">
-        <div class="container-head">Set a Timer</div>
+
+        <div class="container-head">Set a <span style="font-size:xx-large; -webkit-text-stroke: 1px black; color: white;">TIMER</span></div>
 
         <div class="timer-duration alarm-sections">
 
             <div class="timer-section alarm-section">
-                <div class="timer-hours">HOURS</div>
-                <select name="timer-hour-select" id="hour-dropdown">
-                    <option value="0">00</option>
+                <div id="timer-hours" class="alarm-title">Hours</div>
+                <select id="hour-dropdown" class="alarm-time">
+                    <option value='0'>00</option>
                     <option value="1">01</option>
                     <option value="2">02</option>
                     <option value="3">03</option>
@@ -70,8 +87,8 @@
             </div>
 
             <div class="timer-section alarm-section">
-                <div class="timer-minutes">MINUTES</div>
-                <select name="timer-minute-select" id="minute-dropdown">
+                <div id="timer-minutes" class="alarm-title">Minutes</div>
+                <select id="minute-dropdown" class="alarm-time">
                         <option value="0">00</option>
                         <option value="1">01</option>
                         <option value="2">02</option>
@@ -137,8 +154,8 @@
             
 
             <div class="timer-section alarm-section">
-                <div class="timer-seconds">SECONDS</div>
-                <select name="timer-second-select" id="second-dropdown">
+                <div id="timer-seconds" class="alarm-title">Seconds</div>
+                <select id="second-dropdown" class="alarm-time">
                         <option value="0">00</option>
                         <option value="1">01</option>
                         <option value="2">02</option>
@@ -220,8 +237,8 @@
             <div class="alarm-sounds">
                <div class="alarm-sound-title">Alarm Sound</div>
                <select class="alarm-musics">
-                   <option value="clock">Clock</option>
                    <option value="beeps">Beeps</option>
+                   <option value="clock">Clock</option>
                    <option value="spaceship">Space Ship</option>
                    <option value="emergency">Emergency</option>
                    <option value="risendshine">Rise and Shine</option>
@@ -232,11 +249,37 @@
         <div class="alarm-sounds">
            <div class="alarm-sound-title">Timer Name</div>
            <div class="alarm-textarea">
-               <div class="alarm-name" contenteditable>Timer</div>
-               </div>
+               <div class="timer-name alarm-name" contenteditable>Timer</div>
+            </div>
        </div>
+
+       <div class="set-timer set-alarm">SET TIMER</div>
+
+       <table class="timer-table stopwatch-table alarm-table">
+            <tbody class="timer-table-body stopwatch-table-body alarm-table-body">
+            <tr class="head">
+                <td>#</td>
+                <td>NAME</td>
+                <td>TIMER</td>
+                <td>STARTED</td>
+                <td>STOPPED</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="timer-table-buttons stopwatch-table-buttons">
+            <div class="timer-secondary-buttons stopwatch-secondary-buttons">
+                <div class="timer-delete-button stopwatch-delete-button stopwatch-button stopwatch-button-secondary">Delete</div>
+                <div class="timer-save-button stopwatch-save-button stopwatch-button stopwatch-button-secondary">Save</div>
+                <div class="timer-edit-button stopwatch-edit-button stopwatch-button stopwatch-button-secondary">Edit Data</div>
+            </div>
+            <div class="timer-button-primary stopwatch-button-primary stopwatch-button">Clear Data</div>
+        </div>
+
     </div>
     </div>
+
+
     <script src="script_t.js"></script>
     
 </body>

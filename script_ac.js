@@ -217,19 +217,19 @@ const alarmMusicFn = (v) =>{
     const musicPlay = (music) =>{
         music.play();
         bgColor(1);
-        alarmImage.style.visibility = 'visible';
+        alarmImage.style.display = 'block';
         let tuneInterval = setInterval(()=>{
             if(second[0].innerHTML == 59){
                 clearInterval(tuneInterval);
                 bgColor(0);
-                alarmImage.style.visibility = 'hidden';
+                alarmImage.style.display = 'none';
                 music.pause();
             }
         },1000);
         alarmImage.addEventListener('click', ()=>{
             clearInterval(tuneInterval);
             bgColor(0);
-            alarmImage.style.visibility = 'hidden';
+            alarmImage.style.display = 'none';
             music.pause();
         });
     }
