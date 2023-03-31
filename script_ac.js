@@ -34,6 +34,42 @@ let alarmInputLabel = document.getElementsByClassName('alarm-input-label');
 let defaultTime = document.getElementsByClassName('default-time');
 let customAlert = document.getElementById('custom-alert');
 let alertMessage = document.getElementsByClassName('alert-message')[0];
+let pauseButton = document.querySelector('.pause-button');
+let restartButton = document.querySelector('#pause-button');
+let stopButton = document.querySelector('#stop-button');
+
+
+let alertId =0;
+const showAlert = (msg) =>{
+    // the following commented code works for single notification, in case of multiple alerts popping up at a time, this code updates the msg that is present in the previous alert instaed of adding a new alert.
+    // customAlert.classList.remove('active');
+    // alertMessage.innerHTML = msg;
+    // customAlert.style.display = 'block';
+    // setTimeout(()=>{
+    //     customAlert.classList.add('active');
+    // },2500);
+    // setTimeout(()=>{
+    //     customAlert.style.display = 'none';
+    // },3000);
+
+    let alert = document.createElement('div');
+    alert.className = 'alert';
+    alert.id = 'custom-alert';
+    alert.classList.add(`alert${alertId}`);
+    alert.innerHTML = `<div class="alert-message">${msg}</div>`
+    document.body.appendChild(alert);
+    alertId+=1;// on addition of each element the alertId increases
+    let alertElement = document.getElementsByClassName('alert');
+    alertElement[alertId-1].style.display = 'block';
+    setTimeout(()=>{
+        alertElement[0].classList.add('active');// the alert stays for 2.5sec and gets removed; here the '0'th element is removed instead of the 'alertId-1' which makes the first added alert removed first
+    },2500);
+    setTimeout(()=>{
+        alertElement[0].remove();
+        alertId -=1;
+    },3000);// removes the element after the 'active' animation finishes.
+}
+
 
 
 let months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
@@ -591,16 +627,3 @@ deleteButton.addEventListener('click',()=>{
         saveButton.style.visibility = 'visible';
     }
 })
-
-
-const showAlert = (msg) =>{
-    customAlert.classList.remove('active');
-    alertMessage.innerHTML = msg;
-    customAlert.style.display = 'block';
-    setTimeout(()=>{
-        customAlert.classList.add('active');
-    },2500);
-    setTimeout(()=>{
-        customAlert.style.display = 'none';
-    },3000);
-}

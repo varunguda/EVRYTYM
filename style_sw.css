@@ -1,8 +1,7 @@
 
 .container{
-    height: 31vh;
-    width: 36vw;
-    margin: auto;
+    min-height: 31vh;
+    min-width: 36vw;
     overflow: auto;
 }
 
@@ -98,6 +97,8 @@
 }
 
 .stopwatch-table-buttons{
+    margin-top: 3vh;
+    margin-bottom: 3vh;
     height: 5vh;
     display: none;
     justify-content: center;
@@ -163,4 +164,9 @@
 .stopwatch-input-checkbox{
     display: none;
     cursor: pointer;
+}
+
+.info-container{
+    margin-top: 5vh;
+    width: 30vw;
 }

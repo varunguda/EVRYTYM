@@ -13,10 +13,12 @@
 <body>
 
     <img src="images/alarm-clock-svgrepo-com.svg" id="alarm-image">
+    
 
-    <div id="custom-alert" class="alert">
+    <!-- <div id="custom-alert" class="alert">
         <div class="alert-message"></div>
-    </div>
+    </div> -->
+
 
     <div class="navbar">
         <div class="dropdown">
@@ -33,7 +35,7 @@
         </div>
 
         
-        <a class="navheading" href="index.html">TIMER</a>
+        <a class="navheading" href="timer.html">TIMER</a>
         
         <div class="theme">
             <img src="images/moon-svgrepo-com.svg" class="nav-image" id="moon-image"/>
@@ -44,11 +46,37 @@
     <div class="maincontainer">
         
         <div class="container1">
+
+            <div class="circular-timer-progress" style="--progress:0%;">
+                <span class="small-head">TIMER</span>
+                <span class="timer-time">00:00:00</span>
+			<svg height="500" width="500" class="circle" style="--circular-progress:0;--total-progress: 1533">
+				<circle
+					cx="250"
+					cy="250"
+					r="244"
+					stroke="black"
+					stroke-width="13"
+					fill="none"
+				/>
+			</svg>
+            </div>
+
             <div class="timer-progress-container">
-                <div class="progress-number">0%</div>
+                <div class="progress-rate">0%</div>
                 <div class="timer-progress" style="--progress:0%;"></div>
             </div>
         </div>
+        <div class="timer-buttons">
+            <div class="timer-button">
+                <div class="timer-sec-button continue-button hidden-button">Continue</div>
+                <div class="timer-sec-button pause-button">Pause</div>
+            </div>
+            <div class="timer-button" id='restart-button'>Restart</div>
+            <div class="timer-button" id='stop-button'>Stop</div>
+        </div>
+
+
         
     <div class="container2 timer-container">
 
@@ -261,8 +289,8 @@
                 <td>#</td>
                 <td>NAME</td>
                 <td>TIMER</td>
-                <td>STARTED</td>
-                <td>STOPPED</td>
+                <td>SOUND</td>
+                <td>FINISHED</td>
             </tr>
             </tbody>
         </table>

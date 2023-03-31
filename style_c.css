@@ -25,6 +25,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    background: linear-gradient(#dbf5fc, #f2fcff 40%, #f4fcff 3%, #ffffff);
 }
 
 .analog-line{
@@ -58,8 +59,6 @@
     width: 3px;
     position: absolute;
 }
-
-
 
 .clock-center{
     position: absolute;
@@ -153,11 +152,15 @@
 }
 
 .date-analog{
-    text-align: center;
     height: 5%;
     width: 5%;
-    font-size: 65%;
+    font-size: 60%;
     border: 1px solid black;
+    background: rgba(128, 126, 126, 0.04);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #484848;
 }
 
 .clockname{
