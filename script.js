@@ -30,7 +30,7 @@ function month(num,arr){
 let mainCityInterval = null;
 let days = ["Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 async function mainAreaDetails(){
-    let response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Kolkata');
+    let response = await fetch('https://worldtimeapi.org/api/timezone/Asia/Kolkata');
     let json = await response.json();
     ihtml = "";
     ihtml = ` <div class="date-day">
@@ -82,7 +82,7 @@ async function mainAreaDetails(){
 
 let localStorageCityInterval = null;
 async function localAreaDetails(){
-    let response = await fetch(`http://worldtimeapi.org/api/timezone/${localStorage.getItem('default')}`);
+    let response = await fetch(`https://worldtimeapi.org/api/timezone/${localStorage.getItem('default')}`);
     let json = await response.json();
     ihtml = "";
     ihtml = ` <div class="date-day">
@@ -142,22 +142,22 @@ else{
 
 
 async function timezonesFirst(){
-    let response = await fetch('http://worldtimeapi.org/api/timezone');
+    let response = await fetch('https://worldtimeapi.org/api/timezone');
     const json = await response.json();
     return json.slice(0,99);
 }
 async function timezonesSecond(){
-    let response = await fetch('http://worldtimeapi.org/api/timezone');
+    let response = await fetch('https://worldtimeapi.org/api/timezone');
     const json = await response.json();
     return json.slice(99,198);
 }
 async function timezonesThird(){
-    let response = await fetch('http://worldtimeapi.org/api/timezone');
+    let response = await fetch('https://worldtimeapi.org/api/timezone');
     const json = await response.json();
     return json.slice(198,297);
 }
 async function timezonesFourth(){
-    let response = await fetch('http://worldtimeapi.org/api/timezone');
+    let response = await fetch('https://worldtimeapi.org/api/timezone');
     const json = await response.json();
     return json.slice(297,387);
 }
@@ -167,7 +167,7 @@ async function timezonesFourth(){
 async function timezoneFetch(arr){
     let jsonArray = [];
     for(let val of arr){
-        let response = await fetch(`http://worldtimeapi.org/api/timezone/${val}`);
+        let response = await fetch(`https://worldtimeapi.org/api/timezone/${val}`);
         let json = await response.json();
         jsonArray.push(json);
     }
@@ -195,7 +195,7 @@ async function addTimezone(arr){
 async function addTimeFirst(arr){
     // let data = await timezoneFetch(arr); //also works but has a delay in updating the time because of await until fetch of every timezone
     for(let val of arr){
-        let response = await fetch(`http://worldtimeapi.org/api/timezone/${val}`);
+        let response = await fetch(`https://worldtimeapi.org/api/timezone/${val}`);
         let json = await response.json();
         let ihtml = "";
         ihtml = `<div class="city-day">${days[json.day_of_week]}-&nbsp;</div>
@@ -208,7 +208,7 @@ async function addTimeFirst(arr){
 
 async function addTimeSecond(arr){
     for(let val of arr){
-        let response = await fetch(`http://worldtimeapi.org/api/timezone/${val}`);
+        let response = await fetch(`https://worldtimeapi.org/api/timezone/${val}`);
         let json = await response.json();
         let ihtml = "";
         ihtml = `<div class="city-day">${days[json.day_of_week]}-&nbsp;</div>
@@ -221,7 +221,7 @@ async function addTimeSecond(arr){
 
 async function addTimeThird(arr){
     for(let val of arr){
-        let response = await fetch(`http://worldtimeapi.org/api/timezone/${val}`);
+        let response = await fetch(`https://worldtimeapi.org/api/timezone/${val}`);
         let json = await response.json();
         let ihtml = "";
         ihtml = `<div class="city-day">${days[json.day_of_week]}-&nbsp;</div>
@@ -234,7 +234,7 @@ async function addTimeThird(arr){
 
 async function addTimeFourth(arr){
     for(let val of arr){
-        let response = await fetch(`http://worldtimeapi.org/api/timezone/${val}`);
+        let response = await fetch(`https://worldtimeapi.org/api/timezone/${val}`);
         let json = await response.json();
         let ihtml = "";
         ihtml = `<div class="city-day">${days[json.day_of_week]}-&nbsp;</div>
@@ -285,7 +285,7 @@ async function cityClick(elem){
     window.scrollTo(0,0);
     localStorage.setItem('default',elem.innerHTML);//LocalStorage is set such that the city location sustain page/browser refresh
     containerplaceholder.style.display = "block";
-    let response = await fetch(`http://worldtimeapi.org/api/timezone/${elem.innerHTML}`);
+    let response = await fetch(`https://worldtimeapi.org/api/timezone/${elem.innerHTML}`);
     let json = await response.json();
     containerplaceholder.style.display = "none";
     let ihtml = "";

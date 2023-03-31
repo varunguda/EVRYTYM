@@ -92,7 +92,7 @@ function formatNumber(num) {
 let mainCityInterval = null;
 let days = ["Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 async function mainAreaDetails(){
-    let response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Kolkata');
+    let response = await fetch('https://worldtimeapi.org/api/timezone/Asia/Kolkata');
     let json = await response.json();
     ihtml = "";
     ihtml = ` <div class="date-day">
@@ -150,7 +150,7 @@ async function mainAreaDetails(){
 
 let localStorageCityInterval = null;
 async function localAreaDetails(){
-    let response = await fetch(`http://worldtimeapi.org/api/timezone/${localStorage.getItem('default')}`);
+    let response = await fetch(`https://worldtimeapi.org/api/timezone/${localStorage.getItem('default')}`);
     let json = await response.json();
     ihtml = "";
     ihtml = ` <div class="date-day">
@@ -319,7 +319,7 @@ alarmName.addEventListener('keydown',(event)=>{
 
 
 const addAlarm = async() =>{
-    let response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Kolkata');
+    let response = await fetch('https://worldtimeapi.org/api/timezone/Asia/Kolkata');
     let json = await response.json();
     alarmTableBody.innerHTML += `<tr class='alarm-cell-row'>
     <td class='alarm-id'>
@@ -339,7 +339,7 @@ const addAlarm = async() =>{
 }
 
 const addAlarmLocal = async() =>{
-    let response = await fetch(`http://worldtimeapi.org/api/timezone/${localStorage.getItem('default')}`);
+    let response = await fetch(`https://worldtimeapi.org/api/timezone/${localStorage.getItem('default')}`);
     let json = await response.json();
     alarmTableBody.innerHTML += `<tr class='alarm-cell-row'>
     <td class='alarm-id'>
@@ -436,7 +436,7 @@ clearTableData.addEventListener('click',()=>{
 
 
 const addDefaultAlarmLocal = async(elem) =>{
-    let response = await fetch(`http://worldtimeapi.org/api/timezone/${localStorage.getItem('default')}`);
+    let response = await fetch(`https://worldtimeapi.org/api/timezone/${localStorage.getItem('default')}`);
     let json = await response.json();
     alarmTableBody.innerHTML += `<tr class='alarm-cell-row'>
     <td class='alarm-id'>
@@ -453,7 +453,7 @@ const addDefaultAlarmLocal = async(elem) =>{
 }
 
 const addDefaultAlarm = async(elem) =>{
-    let response = await fetch(`http://worldtimeapi.org/api/timezone/Asia/Kolkata`);
+    let response = await fetch(`https://worldtimeapi.org/api/timezone/Asia/Kolkata`);
     let json = await response.json();
     alarmTableBody.innerHTML += `<tr class='alarm-cell-row'>
     <td class='alarm-id'>

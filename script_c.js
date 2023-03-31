@@ -15,7 +15,7 @@ let digitalButton = document.querySelector('.digital-button');
 let analogInterval;
 
 const analogTime = async() =>{
-    let response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Kolkata');
+    let response = await fetch('https://worldtimeapi.org/api/timezone/Asia/Kolkata');
     let json = await response.json();
     let secondLineDegree = json.datetime.slice(17,19)*6;
     let minuteLineDegree = json.datetime.slice(14,16)*6 + json.datetime.slice(17,19)*0.1;
@@ -65,7 +65,7 @@ function formatNumber(num) {
 let mainCityInterval;
 let days = ["Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 async function mainAreaDetails(){
-    let response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Kolkata');
+    let response = await fetch('https://worldtimeapi.org/api/timezone/Asia/Kolkata');
     let json = await response.json();
     ihtml = "";
     ihtml = ` <div class="date-day">
