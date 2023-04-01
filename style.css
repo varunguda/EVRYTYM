@@ -316,3 +316,114 @@ body{
     height: 1.4vh;
     width: 5vw;
 }
+
+.search-container{
+    /* height: 5vh; */
+    width: 100%;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+#search-input{
+    position: relative;
+    height: 4.7vh;
+    background-color: white;
+    width: 90%;
+    top: 50%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+    outline: none;
+    border: none;
+    z-index: 2;
+}
+
+#search-input-outer::before{
+    position: absolute;
+    content: '';
+    background: url('images/city-buildings-svgrepo-com.svg');
+    height: 4vh;
+    width: 3.5vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 3;
+    top: 50%;
+    left: 1%;
+    transform: translate(0,-50%);
+}
+
+#search-input-outer{
+    background-color: white;
+    position: relative;
+    height: 5vh;
+    width: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    outline-offset: 1px;
+    border-radius: 15px;
+    z-index: 3;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+#search-input-outer:hover{
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+
+/* 
+.container-result{
+    display: none;
+    position: absolute;
+    width: 100%;
+    margin-top: 4px;
+    background-color: white;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 1;
+    transform: translateY(-50px);
+    animation: slide-in 0.3s forwards;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+@keyframes slide-in{
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+.result-list-item{
+    position: relative;
+    height: 4vh;
+    margin: 0rem 0.5rem ;
+    list-style: none;
+    cursor: pointer;
+    /* border-bottom: 1px solid black; */
+    /* background-color: white;
+    z-index: 3;
+    transition: 0.3s;
+}
+
+ul li:last-child{
+    border: none;
+} */
+
+.caution{
+    width: 100%;
+    text-align: center;
+    display: none;
+    margin-bottom: 10vh;
+}
+
+.search-result{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 2vh;
+    transition: 0.3s;
+}
+
+.search-result:hover{
+    transform: scale(1.15);
+
+}

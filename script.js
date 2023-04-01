@@ -12,6 +12,9 @@ let city = document.getElementsByClassName('city');
 let loader = document.querySelector('.loader');
 let containerplaceholder = document.querySelector('.containerplaceholder');
 let navbarSecond = document.getElementsByClassName('navbar-secondary')[0];
+let searchInput = document.getElementById('search-input');
+let caution = document.querySelector('.caution');
+let areaTime = document.getElementsByClassName('area-time');
 
 
 let months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
@@ -141,27 +144,11 @@ else{
 
 
 
-async function timezonesFirst(){
+async function allTimezones(){
     let response = await fetch('https://worldtimeapi.org/api/timezone');
     const json = await response.json();
-    return json.slice(0,99);
+    return json;
 }
-async function timezonesSecond(){
-    let response = await fetch('https://worldtimeapi.org/api/timezone');
-    const json = await response.json();
-    return json.slice(99,198);
-}
-async function timezonesThird(){
-    let response = await fetch('https://worldtimeapi.org/api/timezone');
-    const json = await response.json();
-    return json.slice(198,297);
-}
-async function timezonesFourth(){
-    let response = await fetch('https://worldtimeapi.org/api/timezone');
-    const json = await response.json();
-    return json.slice(297,387);
-}
-
 
 
 async function timezoneFetch(arr){
@@ -192,85 +179,62 @@ async function addTimezone(arr){
     }
 }
 
-async function addTimeFirst(arr){
-    // let data = await timezoneFetch(arr); //also works but has a delay in updating the time because of await until fetch of every timezone
-    for(let val of arr){
-        let response = await fetch(`https://worldtimeapi.org/api/timezone/${val}`);
-        let json = await response.json();
-        let ihtml = "";
-        ihtml = `<div class="city-day">${days[json.day_of_week]}-&nbsp;</div>
-            <div class="city-hour">${json.datetime.slice(11,13)}</div>
-            <div class="seperator">:</div>
-            <div class="city-minute">${json.datetime.slice(14,16)}</div>`
-        cityTime[arr.indexOf(val)].innerHTML = ihtml;
-    }
-}
 
-async function addTimeSecond(arr){
-    for(let val of arr){
-        let response = await fetch(`https://worldtimeapi.org/api/timezone/${val}`);
-        let json = await response.json();
-        let ihtml = "";
-        ihtml = `<div class="city-day">${days[json.day_of_week]}-&nbsp;</div>
-            <div class="city-hour">${json.datetime.slice(11,13)}</div>
-            <div class="seperator">:</div>
-            <div class="city-minute">${json.datetime.slice(14,16)}</div>`
-        cityTime[99+arr.indexOf(val)].innerHTML = ihtml;
-    }
-}
+// async function addTime(arr,ind){
+//     // let data = await timezoneFetch(arr); //also works but has a delay in updating the time because of await.
+//     for(let val of arr){
+//         let response = await fetch(`https://worldtimeapi.org/api/timezone/${val}`);
+//         let json = await response.json();
+//         let ihtml = "";
+//         ihtml = `<div class="city-day">${days[json.day_of_week]}-&nbsp;</div>
+//             <div class="city-hour">${json.datetime.slice(11,13)}</div>
+//             <div class="seperator">:</div>
+//             <div class="city-minute">${json.datetime.slice(14,16)}</div>`
+//         cityTime[ind + arr.indexOf(val)].innerHTML = ihtml;
+//     }
+// }
 
-async function addTimeThird(arr){
-    for(let val of arr){
-        let response = await fetch(`https://worldtimeapi.org/api/timezone/${val}`);
+async function addTimeTwo(){
+    for(let i=0; i<city.length; i++){
+        let response = await fetch(`https://worldtimeapi.org/api/timezone/${city[i].innerHTML}`);
         let json = await response.json();
-        let ihtml = "";
-        ihtml = `<div class="city-day">${days[json.day_of_week]}-&nbsp;</div>
-            <div class="city-hour">${json.datetime.slice(11,13)}</div>
-            <div class="seperator">:</div>
-            <div class="city-minute">${json.datetime.slice(14,16)}</div>`
-        cityTime[198+arr.indexOf(val)].innerHTML = ihtml;
-    }
-}
-
-async function addTimeFourth(arr){
-    for(let val of arr){
-        let response = await fetch(`https://worldtimeapi.org/api/timezone/${val}`);
-        let json = await response.json();
-        let ihtml = "";
-        ihtml = `<div class="city-day">${days[json.day_of_week]}-&nbsp;</div>
-            <div class="city-hour">${json.datetime.slice(11,13)}</div>
-            <div class="seperator">:</div>
-            <div class="city-minute">${json.datetime.slice(14,16)}</div>`
-        cityTime[297+arr.indexOf(val)].innerHTML = ihtml;
+        let ihtml = `<div class="city-day">${days[json.day_of_week]}-&nbsp;</div>
+        <div class="city-hour">${json.datetime.slice(11,13)}</div>
+        <div class="seperator">:</div>
+        <div class="city-minute">${json.datetime.slice(14,16)}</div>`
+        cityTime[i].innerHTML = ihtml;
     }
 }
 
 
 async function main1(){
-    let a = await timezonesFirst();
-    await addTimezone(a);
-    setInterval(()=>{
-        addTimeFirst(a);
-    },900)
-
-    let b = await timezonesSecond();
-    await addTimezone(b);
-    setInterval(()=>{
-        addTimeSecond(b);
+    let a = await allTimezones();
+    await addTimezone(a.slice(0,99));
+    let firstInterval = setInterval(()=>{
+        addTimeTwo();
+    },900);
+    
+    let b = await allTimezones();
+    await addTimezone(b.slice(99,198));
+    clearInterval(firstInterval);
+    let secondInterval = setInterval(()=>{
+        addTimeTwo();
     },900);
 
-    let c = await timezonesThird();
-    await addTimezone(c);
-    setInterval(()=>{
-        addTimeThird(c);
+    let c = await allTimezones();
+    await addTimezone(c.slice(198,297));
+    clearInterval(secondInterval);
+    let thirdInterval = setInterval(()=>{
+        addTimeTwo();
     },900);
 
-    let d = await timezonesFourth();
-    await addTimezone(d);
-    loader.style.display = "none";
+    let d = await allTimezones();
+    await addTimezone(d.slice(297,387));
+    clearInterval(thirdInterval);
     setInterval(()=>{
-        addTimeFourth(d);
+        addTimeTwo();
     },900);
+    
 }
 main1();
 
@@ -322,6 +286,7 @@ async function cityClick(elem){
                     minute[i].innerHTML = "00";
                     hr += 1;
                     if(hr>23){
+                        clearInterval(cityClickInterval);
                         cityClick(elem);
                     }
                     else{
@@ -355,4 +320,49 @@ window.addEventListener("scroll",()=>{
     prevScrollPositon = currentScrollPosition;
 });
 
+const getTextContent = (str) =>{
+    let alphabets = `abcdefghijklmnopqrstuvwxyz`;
+    let newStr = str.toLowerCase();
+    let resStr = '';
+    for(let i=0; i<newStr.length; i++){
+        if(alphabets.includes(newStr[i])){
+            resStr += newStr[i];
+        }
+    }
+    return resStr;
+}
+
+
+searchCount = 0;
+searchInput.addEventListener('keyup',(event)=>{
+    if(event.key === 'Enter'){
+        for(let j=0; j<searchCount; j++){
+            areaTime[j].classList.remove('search-result');
+        }
+        caution.style.display = 'none';
+        event.preventDefault();
+        searchInput.blur();
+        let isFound = false;
+        let searchTerm = getTextContent(searchInput.value);
+        if(searchTerm){
+            for(let i=0; i<city.length; i++){
+                let cityTerm = getTextContent(city[i].innerHTML);
+                if(cityTerm.includes(searchTerm)){
+                    isFound = true;
+                    let cityParent = city[i].parentElement;
+                    searchCount += 1;
+                    city[i].parentElement.remove();
+                    cityParent.classList.add('search-result');
+                    container2.insertAdjacentElement('afterbegin',cityParent);
+                }
+            }
+            if(isFound == true){
+                caution.style.display = 'none';
+            }
+            else{
+                caution.style.display = 'block';
+            }
+        }
+    }
+})
 
