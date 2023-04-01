@@ -390,6 +390,7 @@ continueButton.addEventListener('click',()=>{
     continueButton.classList.add('hidden-button');
     pauseButton.classList.remove('hidden-button');
     if(totalSeconds>0){
+        timerTimeFn(timerTime.innerHTML);
         timerInterval = setInterval(()=>{
             elapsedSeconds += 1;
             progressDone = (elapsedSeconds/totalSeconds)*100;
@@ -402,8 +403,8 @@ continueButton.addEventListener('click',()=>{
             }
             if(elapsedSeconds == totalSeconds){
                 clearInterval(timerInterval);
-                clearInterval(timerContainerInterval);
                 alarmMusicFn(alarmMusics.value);
+                clearInterval(timerContainerInterval);
                 timerHour.value = 0;
                 timerMinute.value = 0;
                 timerSecond.value = 0;
@@ -412,10 +413,12 @@ continueButton.addEventListener('click',()=>{
                 elapsedSeconds = 0;
                 progressDone = 0;
                 totalSeconds = 0;
+                container1.style.display = 'none';
+                timerButtons.style.display = 'none';
+                container2.style.display = 'flex';
+                window.scrollTo(0,9999);
             }
         },1000);
-
-        timerTimeFn(timerTime.innerHTML);
     }
 })
 
