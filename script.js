@@ -143,7 +143,6 @@ else{
 }
 
 
-
 async function allTimezones(){
     let response = await fetch('https://worldtimeapi.org/api/timezone');
     const json = await response.json();
@@ -230,6 +229,7 @@ async function main1(){
 
     let d = await allTimezones();
     await addTimezone(d.slice(297,387));
+    loader.style.display = 'none';
     clearInterval(thirdInterval);
     setInterval(()=>{
         addTimeTwo();
