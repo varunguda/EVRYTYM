@@ -209,31 +209,23 @@ async function addTimeTwo(){
 async function main1(){
     let a = await allTimezones();
     await addTimezone(a.slice(0,99));
-    let firstInterval = setInterval(()=>{
-        addTimeTwo();
-    },900);
+    let firstInterval = setInterval(addTimeTwo(),900);
     
     let b = await allTimezones();
     await addTimezone(b.slice(99,198));
     clearInterval(firstInterval);
-    let secondInterval = setInterval(()=>{
-        addTimeTwo();
-    },900);
+    let secondInterval = setInterval(addTimeTwo(),900);
 
     let c = await allTimezones();
     await addTimezone(c.slice(198,297));
     clearInterval(secondInterval);
-    let thirdInterval = setInterval(()=>{
-        addTimeTwo();
-    },900);
+    let thirdInterval = setInterval(addTimeTwo(),900);
 
     let d = await allTimezones();
     await addTimezone(d.slice(297,387));
     loader.style.display = 'none';
     clearInterval(thirdInterval);
-    setInterval(()=>{
-        addTimeTwo();
-    },900);
+    setInterval(addTimeTwo(),900);
     
 }
 main1();
