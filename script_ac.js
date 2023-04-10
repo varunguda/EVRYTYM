@@ -387,22 +387,26 @@ setAlarm.addEventListener("click", ()=>{
         }
         else{
             if(localStorage.getItem('default')){
-                window.scrollTo(0,1200);
+                // window.scrollTo(0,1200);
+                alarmTable.scrollIntoView({behavior:'smooth', block:"start"})
                 addAlarmLocal();
             }
             else{
-                window.scrollTo(0,1200);
+                // window.scrollTo(0,1200);
+                alarmTable.scrollIntoView({behavior:'smooth', block:"start"})
                 addAlarm();
             }
         }
     }
     else{
         if(localStorage.getItem('default')){
-            window.scrollTo(0,1200);
+            // window.scrollTo(0,1200);
+            alarmTable.scrollIntoView({behavior:'smooth', block:"start"})
             addAlarmLocal();
         }
         else{
-            window.scrollTo(0,1200);
+            // window.scrollTo(0,1200);
+            alarmTable.scrollIntoView({behavior:'smooth', block:"start"})
             addAlarm();
         }
     }
@@ -499,22 +503,26 @@ const defaultTimeClick = (elem) =>{
         }
         else{
             if(localStorage.getItem('default')){
-                window.scrollTo(0,1200);
+                // window.scrollTo(0,1200);
+                alarmTable.scrollIntoView({behavior:'smooth', block:"start"})
                 addDefaultAlarmLocal(elem);
             }
             else{
-                window.scrollTo(0,1200);
+                // window.scrollTo(0,1200);
+                alarmTable.scrollIntoView({behavior:'smooth', block:"start"})
                 addDefaultAlarm(elem);
             }
         }
     }
     else{
         if(localStorage.getItem('default')){
-            window.scrollTo(0,1200);
+            // window.scrollTo(0,1200);
+            alarmTable.scrollIntoView({behavior:'smooth', block:"start"})
             addDefaultAlarmLocal(elem);
         }
         else{
-            window.scrollTo(0,1200);
+            // window.scrollTo(0,1200);
+            alarmTable.scrollIntoView({behavior:'smooth', block:"start"})
             addDefaultAlarm(elem);
         }
     }
